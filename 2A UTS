@@ -1,0 +1,51 @@
+import math  # Mengimpor modul matematika untuk konstanta Pi
+
+# Fungsi untuk memvalidasi input agar hanya menerima angka positif
+def validasi_input(nilai):
+    try:
+        nilai = float(nilai)
+        if nilai <= 0:
+            print("Masukkan nilai yang lebih besar dari nol.")
+            return None
+        return nilai
+    except ValueError:
+        print("Masukkan angka yang valid.")
+        return None
+
+# Fungsi untuk menghitung luas lingkaran
+def hitung_luas_lingkaran(jari_jari):
+    return math.pi * jari_jari ** 2  # Phi * r^2
+
+# Fungsi untuk menghitung luas persegi panjang (selimut tabung)
+def hitung_luas_persegi_panjang(jari_jari, tinggi):
+    return 2 * math.pi * jari_jari * tinggi  # 2 * Phi * r * t
+
+# Fungsi untuk menghitung luas permukaan tabung
+def hitung_luas_permukaan_tabung(jari_jari, tinggi):
+    luas_lingkaran = hitung_luas_lingkaran(jari_jari)
+    luas_persegi_panjang = hitung_luas_persegi_panjang(jari_jari, tinggi)
+    return (2 * luas_lingkaran) + luas_persegi_panjang
+
+# Program utama
+print("=================================")
+print("     Aplikasi Hitung Luas        ")
+print("=================================")
+
+# Input tinggi dan jari-jari dari pengguna
+tinggi = None
+while tinggi is None:
+    tinggi_input = input("Masukkan tinggi tabung: ")
+    tinggi = validasi_input(tinggi_input)
+
+jari_jari = None
+while jari_jari is None:
+    jari_jari_input = input("Masukkan jari-jari lingkaran: ")
+    jari_jari = validasi_input(jari_jari_input)
+
+# Menghitung luas permukaan tabung
+luas_permukaan_tabung = hitung_luas_permukaan_tabung(jari_jari, tinggi)
+
+# Menampilkan hasil
+print("=================================")
+print("Luas Permukaan Tabung:", luas_permukaan_tabung)
+print("=================================")
